@@ -62,8 +62,4 @@ public class Delivery implements CsvSerializable {
                 '}';
     }
 
-    public static Delivery fromCsv(char splitChar, String string) {
-        String[] s = string.split(splitChar + "");
-        return new Delivery(Boolean.parseBoolean(s[0]), DeliveryType.valueOf(s[1]), Utils.localDateFromString(s[2]), s[3]);
-    }
 }

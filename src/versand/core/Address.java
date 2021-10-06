@@ -59,9 +59,4 @@ public class Address implements CsvSerializable {
                 '}';
     }
 
-    public static Address fromCsv(char splitChar, String string) {
-        String[] s = string.split(splitChar + "");
-        return new Address(s[0], s[1], Integer.parseInt(s[2]), s[3]);
-    }
-
 }

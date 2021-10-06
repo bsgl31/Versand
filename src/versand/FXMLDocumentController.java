@@ -62,7 +62,7 @@ public class FXMLDocumentController implements Initializable {
 
         placedDate.setValue(LocalDate.now());
 
-        ShippingObject.loadObjects(new File("objects.json"));
+        ShippingObject.loadObjects("objects");
     }
 
 

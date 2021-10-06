@@ -23,7 +23,7 @@ public class Versand extends Application {
         stage.show();
 
         stage.setOnCloseRequest(event -> {
-            ShippingObject.saveObjects(new File("objects.json"));
+            ShippingObject.saveObjects("objects");
         });
     }
 

@@ -59,9 +59,4 @@ public class Insurance implements CsvSerializable {
         }
     }
 
-    public static Insurance fromCsv(char splitChar, String string) {
-        String[] s = string.split(splitChar + "");
-        return new Insurance(Boolean.parseBoolean(s[0]), InsuranceType.valueOf(s[1]), parseDouble(s[2]));
-    }
-
 }
