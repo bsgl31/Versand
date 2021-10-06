@@ -63,7 +63,7 @@
       "express": true,
       "type": "PACKAGE",
       "wishDeliveryDate": null,
-      "alternativeDestination": "Hinterdupfing 30a"
+      "alternativeDestination": "Hinterdupfing 30abc"
     },
     "insurance": {
       "selected": true,

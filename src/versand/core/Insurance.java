@@ -9,6 +9,12 @@ public class Insurance {
     private final InsuranceType type;
     private final double amount;
 
+    /**
+     * Erstellt eine neue {@link Insurance}
+     * @param selected Versichert
+     * @param type Versicherungs-Typ
+     * @param amount Betrag, wird nur bei {@link InsuranceType#ABOVE_500} benötigt
+     */
     public Insurance(boolean selected, InsuranceType type, double amount) {
         this.selected = selected;
         this.type = type;

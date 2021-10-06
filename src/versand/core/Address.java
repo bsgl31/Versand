@@ -2,7 +2,7 @@ package versand.core;
 
 import javafx.scene.control.TextField;
 
-public class Address {
+public class Address implements CsvSerializable<Address> {
 
     private final String streetName;
     private final String houseNumber;
@@ -42,6 +42,16 @@ public class Address {
 
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public String toCsv(char splitChar) {
+        return streetName + splitChar + houseNumber + splitChar + postcode + splitChar + location + splitChar;
+    }
+
+    @Override
+    public Address fromCsv(String[] s, char splitChar) {
+        return new Address(s[0], s[1], Integer.parseInt(s[2]), s[3]);
     }
 
     @Override

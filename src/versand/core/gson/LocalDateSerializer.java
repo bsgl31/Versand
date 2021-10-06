@@ -1,6 +1,7 @@
 package versand.core.gson;
 
 import com.google.gson.*;
+import versand.core.Utils;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
@@ -12,13 +13,12 @@ public class LocalDateSerializer implements JsonSerializer<LocalDate>, JsonDeser
 
     @Override
     public JsonElement serialize(LocalDate localDate, Type type, JsonSerializationContext jsonSerializationContext) {
-        return new JsonPrimitive(localDate.getYear() + "-" + localDate.getMonthValue() + "-" + localDate.getDayOfMonth());
+        return new JsonPrimitive(Utils.localDateToString(localDate));
     }
 
     @Override
     public LocalDate deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        String[] split = jsonElement.getAsString().split("-");
-        return LocalDate.of(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+        return Utils.localDateFromString(jsonElement.getAsString());
     }
 
 }

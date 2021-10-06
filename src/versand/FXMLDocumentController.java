@@ -66,7 +66,6 @@ public class FXMLDocumentController implements Initializable {
     }
 
 
-
     @FXML
     private void loadShippingObject(ActionEvent event) {
         ShippingObject object = ShippingObject.get(id.getText());

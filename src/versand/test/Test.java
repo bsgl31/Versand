@@ -25,7 +25,7 @@ public class Test {
 
         ShippingObject.saveObjects(new File("objects.json"));
 
-        ShippingObject.clear();
+        ShippingObject.clearObjects();
 
         ShippingObject.loadObjects(new File("objects.json"));
         ShippingObject.printObjects();

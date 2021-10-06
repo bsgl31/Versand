@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="versand.FXMLDocumentController">
+   <children>
+      <Label layoutX="154.0" layoutY="14.0" prefHeight="35.0" prefWidth="296.0" text="Versandobjekte erfassen">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="59.0" text="ID" />
+      <TextField fx:id="id" layoutX="82.0" layoutY="55.0" prefHeight="25.0" prefWidth="296.0" />
+      <Button layoutX="390.0" layoutY="55.0" mnemonicParsing="false" onAction="#createShippingObject" text="Speichern" />
+      <Button layoutX="470.0" layoutY="55.0" mnemonicParsing="false" onAction="#loadShippingObject" text="Laden" />
+      <Label layoutX="530.0" layoutY="59.0" text="Status" />
+      <Label layoutX="55.0" layoutY="102.0" text="Aufgegeben" />
+      <DatePicker fx:id="placedDate" layoutX="128.0" layoutY="98.0" />
+      <TitledPane collapsible="false" layoutX="20.0" layoutY="147.0" prefHeight="123.0" prefWidth="340.0" text="Absender">
+         <content>
+            <AnchorPane prefHeight="106.0" prefWidth="338.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="14.0" text="Vorname" />
+                  <TextField fx:id="senderName" layoutX="60.0" layoutY="10.0" prefHeight="25.0" prefWidth="103.0" />
+                  <Label layoutX="176.0" layoutY="14.0" text="Name" />
+                  <TextField fx:id="senderSurname" layoutX="211.0" layoutY="10.0" prefHeight="25.0" prefWidth="107.0" />
+                  <Label layoutX="8.0" layoutY="45.0" text="Straße" />
+                  <TextField fx:id="senderStreet" layoutX="60.0" layoutY="41.0" prefHeight="25.0" prefWidth="174.0" />
+                  <TextField fx:id="senderHouseNumber" layoutX="242.0" layoutY="41.0" prefHeight="25.0" prefWidth="48.0" />
+                  <Label layoutX="8.0" layoutY="76.0" prefHeight="17.0" prefWidth="24.0" text="PLZ" />
+                  <TextField fx:id="senderPostcode" layoutX="33.0" layoutY="72.0" prefHeight="25.0" prefWidth="69.0" />
+                  <Label layoutX="112.0" layoutY="76.0" text="Ort" />
+                  <TextField fx:id="senderLocation" layoutX="134.0" layoutY="72.0" prefHeight="25.0" prefWidth="174.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <Label layoutX="15.0" layoutY="455.0" text="Beschreibung des Inhalts:" />
+      <TextArea fx:id="description" layoutX="20.0" layoutY="481.0" prefHeight="118.0" prefWidth="340.0" />
+      <TitledPane collapsible="false" layoutX="370.0" layoutY="147.0" prefHeight="231.0" prefWidth="340.0" text="Zustellung">
+         <content>
+            <AnchorPane prefHeight="201.0" prefWidth="338.0">
+               <children>
+                  <CheckBox fx:id="deliveryExpress" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" text="Express" />
+                  <RadioButton fx:id="deliveryLetter" layoutX="8.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" text="Brief">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="deliveryType" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="deliveryParcel" layoutX="69.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" selected="true" text="Päckchen" toggleGroup="$deliveryType" />
+                  <RadioButton fx:id="deliveryPackage" layoutX="153.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" text="Paket" toggleGroup="$deliveryType" />
+                  <Label layoutX="8.0" layoutY="68.0" text="Wunschtermin Zustellung" />
+                  <DatePicker fx:id="wishDeliveryDate" layoutX="152.0" layoutY="64.0" prefHeight="25.0" prefWidth="166.0" />
+                  <CheckBox fx:id="alternativeDestinationCheckbox" layoutX="8.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleAlternativeDestination" text="Alternativer Ablageort" />
+               </children>
+            </AnchorPane>
+         </content></TitledPane>
+      <TitledPane collapsible="false" layoutX="20.0" layoutY="304.0" prefHeight="123.0" prefWidth="340.0" text="Empfänger">
+         <content>
+            <AnchorPane prefHeight="106.0" prefWidth="338.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="14.0" text="Vorname" />
+                  <TextField fx:id="receiverName" layoutX="60.0" layoutY="10.0" prefHeight="25.0" prefWidth="103.0" />
+                  <Label layoutX="176.0" layoutY="14.0" text="Name" />
+                  <TextField fx:id="receiverSurname" layoutX="211.0" layoutY="10.0" prefHeight="25.0" prefWidth="107.0" />
+                  <Label layoutX="8.0" layoutY="45.0" text="Straße" />
+                  <TextField fx:id="receiverStreet" layoutX="60.0" layoutY="41.0" prefHeight="25.0" prefWidth="174.0" />
+                  <TextField fx:id="receiverHouseNumber" layoutX="242.0" layoutY="41.0" prefHeight="25.0" prefWidth="48.0" />
+                  <Label layoutX="8.0" layoutY="76.0" prefHeight="17.0" prefWidth="24.0" text="PLZ" />
+                  <TextField fx:id="receiverPostcode" layoutX="33.0" layoutY="72.0" prefHeight="25.0" prefWidth="69.0" />
+                  <Label layoutX="112.0" layoutY="76.0" text="Ort" />
+                  <TextField fx:id="receiverLocation" layoutX="134.0" layoutY="72.0" prefHeight="25.0" prefWidth="174.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <TextArea fx:id="alternativeDestination" disable="true" layoutX="378.0" layoutY="304.0" prefHeight="65.0" prefWidth="322.0" />
+      <TitledPane collapsible="false" layoutX="370.0" layoutY="389.0" prefHeight="203.0" prefWidth="107.0" text="Versicherung">
+         <content>
+            <AnchorPane prefHeight="165.0" prefWidth="105.0">
+               <children>
+                  <CheckBox fx:id="insuranceCheckbox" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleInsurance" text="versichert" />
+                  <VBox layoutX="6.0" layoutY="36.0" prefHeight="65.0" prefWidth="79.0">
+                     <children>
+                        <RadioButton fx:id="insuranceUntil100" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" prefHeight="17.0" prefWidth="69.0" selected="true" text="bis 100€">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="insurance" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="insuranceUntil500" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" text="bis 500€" toggleGroup="$insurance" />
+                        <RadioButton fx:id="insuranceAbove500" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" text="über 500€" toggleGroup="$insurance" />
+                     </children>
+                  </VBox>
+                  <Label layoutX="6.0" layoutY="115.0" text="Betrag" />
+                  <TextField fx:id="insuranceAmount" disable="true" layoutX="9.0" layoutY="138.0" prefHeight="25.0" prefWidth="68.0" />
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane collapsible="false" layoutX="487.0" layoutY="389.0" prefHeight="209.0" prefWidth="225.0" text="Preisberechnung">
+         <content>
+            <AnchorPane prefHeight="184.0" prefWidth="223.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="48.0" text="Rabatt" />
+                  <Slider fx:id="salesPercent" blockIncrement="1.0" layoutX="56.0" layoutY="40.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="33.0" prefWidth="147.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Button fx:id="calculatePrice" layoutX="13.0" layoutY="103.0" mnemonicParsing="false" onAction="#calculatePrice" text="Berechnen" />
+                  <Label fx:id="price" layoutX="91.0" layoutY="107.0" prefHeight="17.0" prefWidth="112.0" text="Preis: " />
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
