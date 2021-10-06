@@ -49,13 +49,7 @@ public class Delivery implements CsvSerializable {
 
     @Override
     public String toCsv(char splitChar) {
-        return Boolean.toString(express) + splitChar + type.name() + splitChar + Utils.localDateToString(wishDeliveryDate) + splitChar + alternativeDestination + splitChar;
-    }
-
-    @Override
-    public Delivery fromCsv(String s, char splitChar) {
-        String[] split = s.split(splitChar + "");
-        return new Delivery(Boolean.parseBoolean(split[0]), DeliveryType.valueOf(split[1]), Utils.localDateFromString(split[2]), split[3]);
+        return Boolean.toString(express) + splitChar + type.name() + splitChar + Utils.localDateToString(wishDeliveryDate) + splitChar + alternativeDestination;
     }
 
     @Override
@@ -66,5 +60,10 @@ public class Delivery implements CsvSerializable {
                 ", wishDeliveryDate=" + wishDeliveryDate +
                 ", alternativeDestination='" + alternativeDestination + '\'' +
                 '}';
+    }
+
+    public static Delivery fromCsv(char splitChar, String string) {
+        String[] s = string.split(splitChar + "");
+        return new Delivery(Boolean.parseBoolean(s[0]), DeliveryType.valueOf(s[1]), Utils.localDateFromString(s[2]), s[3]);
     }
 }

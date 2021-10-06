@@ -3,7 +3,7 @@ package versand.core;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
-public class Insurance {
+public class Insurance implements CsvSerializable {
 
     private final boolean selected;
     private final InsuranceType type;
@@ -45,6 +45,11 @@ public class Insurance {
                 '}';
     }
 
+    @Override
+    public String toCsv(char splitChar) {
+        return Boolean.toString(selected) + splitChar + type.name() + splitChar + amount;
+    }
+
 
     private static double parseDouble(String text) {
         try {
@@ -52,6 +57,11 @@ public class Insurance {
         } catch (NumberFormatException ex) {
             return 0;
         }
+    }
+
+    public static Insurance fromCsv(char splitChar, String string) {
+        String[] s = string.split(splitChar + "");
+        return new Insurance(Boolean.parseBoolean(s[0]), InsuranceType.valueOf(s[1]), parseDouble(s[2]));
     }
 
 }

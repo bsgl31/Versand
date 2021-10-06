@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShippingObject {
+public class ShippingObject implements CsvSerializable {
 
     private static HashMap<String, ShippingObject> SHIPPING_OBJECTS = new HashMap<>();
     private static final DataLoader DATA_LOADER = new JsonLoader();
@@ -142,6 +142,11 @@ public class ShippingObject {
     }
 
     @Override
+    public String toCsv(char splitChar) {
+        return id + splitChar + Utils.localDateToString(placed) + splitChar + sender.toCsv(splitChar) + splitChar + receiver.toCsv(splitChar) + splitChar + description;
+    }
+
+    @Override
     public String toString() {
         return "ShippingObject{" +
                 "id=" + id +
@@ -153,5 +158,4 @@ public class ShippingObject {
                 ", insurance=" + insurance +
                 '}';
     }
-
 }

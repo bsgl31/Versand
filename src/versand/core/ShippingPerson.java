@@ -2,7 +2,7 @@ package versand.core;
 
 import javafx.scene.control.TextField;
 
-public class ShippingPerson {
+public class ShippingPerson implements CsvSerializable {
 
     private final String name;
     private final String surname;
@@ -34,6 +34,11 @@ public class ShippingPerson {
 
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public String toCsv(char splitChar) {
+        return name + splitChar + surname + splitChar + address.toCsv(splitChar);
     }
 
     @Override

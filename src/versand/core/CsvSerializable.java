@@ -1,14 +1,7 @@
 package versand.core;
 
-public interface CsvSerializable<T> {
+public interface CsvSerializable {
 
     String toCsv(char splitChar);
-
-    default T fromCsv(char splitChar, String s) {
-        String[] split = s.split(splitChar + "");
-        return fromCsv(splitChar, split);
-    }
-
-    T fromCsv(char splitChar, String[] s);
 
 }
