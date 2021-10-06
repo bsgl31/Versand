@@ -13,9 +13,8 @@ public class ShippingPerson {
      * @param name Vorname
      * @param surname Nachname
      * @param address Addresse
-     * @throws IllegalArgumentException Falls bei der Erstellung ungültige Daten verwendet wurden.
      */
-    public ShippingPerson(String name, String surname, Address address) throws IllegalArgumentException {
+    public ShippingPerson(String name, String surname, Address address) {
         this.name = name;
         this.surname = surname;
         this.address = address;

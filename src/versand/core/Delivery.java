@@ -11,7 +11,7 @@ public class Delivery {
 
     private final LocalDate wishDeliveryDate;
 
-    private String alternativeDestination = null;
+    private final String alternativeDestination;
 
     public Delivery(boolean express, DeliveryType type, LocalDate wishDeliveryDate, String alternativeDestination) {
         this.express = express;

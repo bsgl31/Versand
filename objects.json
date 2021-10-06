@@ -1,0 +1,74 @@
+{
+  "42342345": {
+    "id": "42342345",
+    "placed": "2021-10-6",
+    "sender": {
+      "name": "Hans",
+      "surname": "Wuaschd",
+      "address": {
+        "streetName": "Straße",
+        "houseNumber": "5c",
+        "postcode": 94227,
+        "location": "Zwiesel"
+      }
+    },
+    "receiver": {
+      "name": "Herbert",
+      "surname": "Hinterdupfing",
+      "address": {
+        "streetName": "Straße 2",
+        "houseNumber": "10a",
+        "postcode": 94227,
+        "location": "Zwiesel"
+      }
+    },
+    "description": "Das ist eine Beschreibung",
+    "delivery": {
+      "express": true,
+      "type": "PACKAGE",
+      "wishDeliveryDate": "2021-10-9",
+      "alternativeDestination": "Hinterdupfing 30a"
+    },
+    "insurance": {
+      "selected": true,
+      "type": "UNTIL_100",
+      "amount": 0.0
+    }
+  },
+  "4234234": {
+    "id": "4234234",
+    "placed": "2021-10-6",
+    "sender": {
+      "name": "Hans",
+      "surname": "Wuaschd",
+      "address": {
+        "streetName": "Straße",
+        "houseNumber": "5c",
+        "postcode": 94227,
+        "location": "Zwiesel"
+      }
+    },
+    "receiver": {
+      "name": "Herbert",
+      "surname": "Hinterdupfing",
+      "address": {
+        "streetName": "Straße 2",
+        "houseNumber": "10a",
+        "postcode": 94227,
+        "location": "Zwiesel"
+      }
+    },
+    "description": "Das ist eine Beschreibung",
+    "delivery": {
+      "express": true,
+      "type": "PACKAGE",
+      "wishDeliveryDate": null,
+      "alternativeDestination": "Hinterdupfing 30a"
+    },
+    "insurance": {
+      "selected": true,
+      "type": "UNTIL_100",
+      "amount": 0.0
+    }
+  }
+}

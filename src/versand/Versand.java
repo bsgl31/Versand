@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import versand.core.ShippingObject;
+
+import java.io.File;
 
 public class Versand extends Application {
     
@@ -18,6 +21,10 @@ public class Versand extends Application {
         stage.setTitle("Versand");
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> {
+            ShippingObject.saveObjects(new File("objects.json"));
+        });
     }
 
     public static void main(String[] args) {
