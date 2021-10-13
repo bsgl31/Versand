@@ -155,7 +155,10 @@ public class FXMLDocumentController implements Initializable {
                 s.setStyle(null);
             }
         }
-        if(invalid) return true;
+        if(invalid) {
+            Utils.message("Sender/Empfänger sind Mussfelder.");
+            return true;
+        }
 
         if(insuranceAmount.getText().contains(",")) {
             Utils.message("\"Betrag\" darf keine Kommas enthalten (Punkte als Dezimaltrennzeichen)");
