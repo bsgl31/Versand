@@ -1,20 +1,33 @@
 package versand;
 
-import java.io.File;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+import versand.core.Address;
+import versand.core.Delivery;
+import versand.core.DeliveryType;
+import versand.core.Insurance;
+import versand.core.InsuranceType;
+import versand.core.ShippingObject;
+import versand.core.ShippingPerson;
+import versand.core.Utils;
+
+import javax.swing.JOptionPane;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
-import com.sun.deploy.uitoolkit.impl.fx.ui.FXMessageDialog;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import versand.core.*;
-
-import javax.swing.*;
 
 public class FXMLDocumentController implements Initializable {
 
@@ -61,6 +74,20 @@ public class FXMLDocumentController implements Initializable {
         insuranceTypes.put(insuranceAbove500, InsuranceType.ABOVE_500);
 
         placedDate.setValue(LocalDate.now());
+
+        insuranceCheckbox.selectedProperty().addListener((observable, oldValue, selected) -> {
+            for (Toggle o : insurance.getToggles()) {
+                ((RadioButton) o).setDisable(!selected);
+            }
+            insuranceAmount.setDisable(!(selected && insuranceAbove500.isSelected()));
+        });
+
+        deliveryLetter.selectedProperty().addListener((observable, oldValue, selected) -> {
+            insuranceCheckbox.setSelected(false);
+            insuranceCheckbox.setDisable(selected);
+        });
+        insuranceAbove500.selectedProperty().addListener((observable, oldValue, selected) -> insuranceAmount.setDisable(!selected));
+        alternativeDestinationCheckbox.selectedProperty().addListener((observable, oldValue, selected) -> alternativeDestination.setDisable(!selected));
 
         ShippingObject.loadObjects("objects");
     }
@@ -190,39 +217,5 @@ public class FXMLDocumentController implements Initializable {
 
         this.price.setText("Preis: " + String.format("%,.2f", price));
     }
-
-    @FXML
-    private void toggleAlternativeDestination(ActionEvent event) {
-        alternativeDestination.setDisable(!alternativeDestinationCheckbox.isSelected());
-    }
-
-    @FXML
-    private void toggleDeliveryType(ActionEvent event) {
-        if (deliveryType.getSelectedToggle() == deliveryLetter) {
-            insuranceCheckbox.setSelected(false);
-            insuranceCheckbox.setDisable(true);
-            for (Toggle o : insurance.getToggles()) {
-                ((RadioButton) o).setDisable(!insuranceCheckbox.isSelected());
-            }
-        } else {
-            insuranceCheckbox.setDisable(false);
-        }
-    }
-
-    @FXML
-    private void toggleInsurance(ActionEvent event) {
-        if (deliveryType.getSelectedToggle() == deliveryLetter) {
-            insuranceCheckbox.setSelected(false);
-        }
-        for (Toggle o : insurance.getToggles()) {
-            ((RadioButton) o).setDisable(!insuranceCheckbox.isSelected());
-        }
-    }
-
-    @FXML
-    private void toggleInsurance500(ActionEvent event) {
-        insuranceAmount.setDisable(!insuranceAbove500.isSelected());
-    }
-
 
 }

@@ -44,15 +44,15 @@
             <AnchorPane prefHeight="201.0" prefWidth="338.0">
                <children>
                   <CheckBox fx:id="deliveryExpress" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" text="Express" />
-                  <RadioButton fx:id="deliveryLetter" layoutX="8.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" text="Brief">
+                  <RadioButton fx:id="deliveryLetter" layoutX="8.0" layoutY="40.0" mnemonicParsing="false" text="Brief">
                      <toggleGroup>
                         <ToggleGroup fx:id="deliveryType" />
                      </toggleGroup></RadioButton>
-                  <RadioButton fx:id="deliveryParcel" layoutX="69.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" selected="true" text="Päckchen" toggleGroup="$deliveryType" />
-                  <RadioButton fx:id="deliveryPackage" layoutX="153.0" layoutY="40.0" mnemonicParsing="false" onAction="#toggleDeliveryType" text="Paket" toggleGroup="$deliveryType" />
+                  <RadioButton fx:id="deliveryParcel" layoutX="69.0" layoutY="40.0" mnemonicParsing="false" selected="true" text="Päckchen" toggleGroup="$deliveryType" />
+                  <RadioButton fx:id="deliveryPackage" layoutX="153.0" layoutY="40.0" mnemonicParsing="false" text="Paket" toggleGroup="$deliveryType" />
                   <Label layoutX="8.0" layoutY="68.0" text="Wunschtermin Zustellung" />
                   <DatePicker fx:id="wishDeliveryDate" layoutX="152.0" layoutY="64.0" prefHeight="25.0" prefWidth="166.0" />
-                  <CheckBox fx:id="alternativeDestinationCheckbox" layoutX="8.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleAlternativeDestination" text="Alternativer Ablageort" />
+                  <CheckBox fx:id="alternativeDestinationCheckbox" layoutX="8.0" layoutY="106.0" mnemonicParsing="false" text="Alternativer Ablageort" />
                </children>
             </AnchorPane>
          </content></TitledPane>
@@ -80,15 +80,15 @@
          <content>
             <AnchorPane prefHeight="165.0" prefWidth="105.0">
                <children>
-                  <CheckBox fx:id="insuranceCheckbox" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#toggleInsurance" text="versichert" />
+                  <CheckBox fx:id="insuranceCheckbox" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" text="versichert" />
                   <VBox layoutX="6.0" layoutY="36.0" prefHeight="65.0" prefWidth="79.0">
                      <children>
-                        <RadioButton fx:id="insuranceUntil100" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" prefHeight="17.0" prefWidth="69.0" selected="true" text="bis 100€">
+                        <RadioButton fx:id="insuranceUntil100" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" selected="true" text="bis 100€">
                            <toggleGroup>
                               <ToggleGroup fx:id="insurance" />
                            </toggleGroup></RadioButton>
-                        <RadioButton fx:id="insuranceUntil500" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" text="bis 500€" toggleGroup="$insurance" />
-                        <RadioButton fx:id="insuranceAbove500" disable="true" mnemonicParsing="false" onAction="#toggleInsurance500" text="über 500€" toggleGroup="$insurance" />
+                        <RadioButton fx:id="insuranceUntil500" disable="true" mnemonicParsing="false" text="bis 500€" toggleGroup="$insurance" />
+                        <RadioButton fx:id="insuranceAbove500" disable="true" mnemonicParsing="false" text="über 500€" toggleGroup="$insurance" />
                      </children>
                   </VBox>
                   <Label layoutX="6.0" layoutY="115.0" text="Betrag" />

@@ -101,7 +101,7 @@ public class ShippingObject implements CsvSerializable {
         if(delivery.getWishDeliveryDate() != null) {
             price += 0.5;
         }
-        if(deliveryType != DeliveryType.LETTER) {
+        if(deliveryType != DeliveryType.LETTER && insurance.isSelected()) {
             InsuranceType insuranceType = insurance.getType();
             if(insuranceType == InsuranceType.UNTIL_100) {
                 price += 1.20;
