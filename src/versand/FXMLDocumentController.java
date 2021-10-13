@@ -130,6 +130,10 @@ public class FXMLDocumentController implements Initializable {
         }
         if(invalid) return true;
 
+        if(insuranceAmount.getText().contains(",")) {
+            Utils.message("\"Betrag\" darf keine Kommas enthalten (Punkte als Dezimaltrennzeichen)");
+            return true;
+        }
 
         if(placedDate.getValue().isBefore(LocalDate.now())) {
             Utils.message("\"Aufgegeben\" darf nicht in der Vergangenheit liegen");
