@@ -1,13 +1,14 @@
 package versand.core;
 
 import javafx.scene.control.TextField;
+import versand.core.loader.CsvSerializable;
 
 public class Address implements CsvSerializable {
 
     private final String streetName;
     private final String houseNumber;
 
-    private final int postcode;
+    private final String postcode;
     private final String location;
 
     /**
@@ -17,7 +18,7 @@ public class Address implements CsvSerializable {
      * @param postcode PLZ
      * @param location Ort
      */
-    public Address(String streetName, String houseNumber, int postcode, String location) {
+    public Address(String streetName, String houseNumber, String postcode, String location) {
         this.streetName = streetName;
         this.houseNumber = houseNumber;
         this.postcode = postcode;
@@ -25,7 +26,7 @@ public class Address implements CsvSerializable {
     }
 
     public Address(TextField streetName, TextField houseNumber, TextField postcode, TextField location) {
-        this(streetName.getText(), houseNumber.getText(), Integer.parseInt(postcode.getText()), location.getText());
+        this(streetName.getText(), houseNumber.getText(), postcode.getText(), location.getText());
     }
 
     public String getStreetName() {
@@ -36,7 +37,7 @@ public class Address implements CsvSerializable {
         return houseNumber;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 

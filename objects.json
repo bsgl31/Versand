@@ -1,14 +1,14 @@
 {
   "42342345": {
     "id": "42342345",
-    "placed": "2021-10-6",
+    "placed": "2021-10-11",
     "sender": {
       "name": "Hans",
       "surname": "Wuaschd",
       "address": {
         "streetName": "Straße",
         "houseNumber": "5c",
-        "postcode": 94227,
+        "postcode": "94227",
         "location": "Zwiesel"
       }
     },
@@ -18,7 +18,7 @@
       "address": {
         "streetName": "Straße 2",
         "houseNumber": "10a",
-        "postcode": 94227,
+        "postcode": "94227",
         "location": "Zwiesel"
       }
     },
@@ -31,7 +31,7 @@
     },
     "insurance": {
       "selected": true,
-      "type": "UNTIL_100",
+      "type": "UNTIL_500",
       "amount": 0.0
     }
   },
@@ -44,7 +44,7 @@
       "address": {
         "streetName": "Straße",
         "houseNumber": "5c",
-        "postcode": 94227,
+        "postcode": "94227",
         "location": "Zwiesel"
       }
     },
@@ -54,7 +54,7 @@
       "address": {
         "streetName": "Straße 2",
         "houseNumber": "10a",
-        "postcode": 94227,
+        "postcode": "94227",
         "location": "Zwiesel"
       }
     },

@@ -1,6 +1,7 @@
 package versand.core;
 
 import javafx.scene.control.TextField;
+import versand.core.loader.CsvSerializable;
 
 public class ShippingPerson implements CsvSerializable {
 

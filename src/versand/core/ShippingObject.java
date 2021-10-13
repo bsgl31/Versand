@@ -4,10 +4,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import versand.core.loader.CsvLoader;
+import versand.core.loader.CsvSerializable;
 import versand.core.loader.DataLoader;
 import versand.core.loader.JsonLoader;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class ShippingObject implements CsvSerializable {
 
     private static HashMap<String, ShippingObject> SHIPPING_OBJECTS = new HashMap<>();
-    private static final DataLoader DATA_LOADER = new CsvLoader();
+    private static final DataLoader DATA_LOADER = new JsonLoader();
 
     public static ShippingObject get(String id) {
         return SHIPPING_OBJECTS.get(id);

@@ -15,8 +15,8 @@ public class Test {
         ShippingObject object = new ShippingObject(
                 "4234234",
                 LocalDate.now(),
-                new ShippingPerson("Hans", "Wuaschd", new Address("Straße", "5c", 94227, "Zwiesel")),
-                new ShippingPerson("Herbert", "Hinterdupfing", new Address("Straße 2", "10a", 94227, "Zwiesel")),
+                new ShippingPerson("Hans", "Wuaschd", new Address("Straße", "5c", "94227", "Zwiesel")),
+                new ShippingPerson("Herbert", "Hinterdupfing", new Address("Straße 2", "10a", "94227", "Zwiesel")),
                 "Das ist eine Beschreibung",
                 new Delivery(true, DeliveryType.PACKAGE, LocalDate.now(), "Hinterdupfing 30a"),
                 new Insurance(true, null, 534));

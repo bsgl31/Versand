@@ -2,6 +2,7 @@ package versand.core;
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import versand.core.loader.CsvSerializable;
 
 public class Insurance implements CsvSerializable {
 

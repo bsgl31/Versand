@@ -1,4 +1,4 @@
-package versand.core;
+package versand.core.loader;
 
 public interface CsvSerializable {
 

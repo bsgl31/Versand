@@ -1,6 +1,7 @@
 package versand.core;
 
 import javafx.scene.control.*;
+import versand.core.loader.CsvSerializable;
 
 import java.time.LocalDate;
 

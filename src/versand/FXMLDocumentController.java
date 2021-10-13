@@ -113,16 +113,23 @@ public class FXMLDocumentController implements Initializable {
 
         placedDate.setValue(object.getPlaced());
         description.setText(object.getDescription());
+
+        isNotValid();
     }
 
     private boolean isNotValid() {
+        boolean invalid = false;
         for (TextField s : new TextField[]{senderStreet, senderHouseNumber, senderPostcode, senderLocation, senderName, senderSurname,
                 receiverStreet, receiverHouseNumber, receiverPostcode, receiverLocation, receiverName, receiverSurname, id}) {
             if (s.getText() == null || s.getText().trim().equals("")) {
-                Utils.message("Ungültige/Unvollständige Eingabe");
-                return true;
+                s.setStyle("-fx-border-color: #ffb566");
+                invalid = true;
+            } else {
+                s.setStyle(null);
             }
         }
+        if(invalid) return true;
+
 
         if(placedDate.getValue().isBefore(LocalDate.now())) {
             Utils.message("\"Aufgegeben\" darf nicht in der Vergangenheit liegen");
