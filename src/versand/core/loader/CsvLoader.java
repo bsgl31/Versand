@@ -40,7 +40,7 @@ public class CsvLoader implements DataLoader {
                 boolean express = Boolean.parseBoolean(split[15]);
                 DeliveryType deliveryType = DeliveryType.valueOf(split[16]);
                 LocalDate wishDeliveryDate = Utils.localDateFromString(split[17]);
-                String alternativeDestination = (split[18].equals("null") ? null : split[18]);
+                String alternativeDestination = (split[18].equals("null") ? null : split[18].replaceAll("<br>", "\n"));
 
                 boolean hasInsurance = Boolean.parseBoolean(split[19]);
                 InsuranceType insuranceType = InsuranceType.valueOf(split[20]);

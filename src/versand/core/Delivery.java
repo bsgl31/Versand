@@ -50,7 +50,7 @@ public class Delivery implements CsvSerializable {
 
     @Override
     public String toCsv(char splitChar) {
-        return Boolean.toString(express) + splitChar + type.name() + splitChar + Utils.localDateToString(wishDeliveryDate) + splitChar + alternativeDestination;
+        return Boolean.toString(express) + splitChar + type.name() + splitChar + Utils.localDateToString(wishDeliveryDate) + splitChar + (alternativeDestination != null ? alternativeDestination.replaceAll("\n", "<br>") : "null");
     }
 
     @Override
