@@ -35,7 +35,7 @@ public class CsvLoader implements DataLoader {
                 String receiverPostcode = split[12];
                 String receiverLocation = split[13];
 
-                String description = split[14];
+                String description = split[14].replaceAll("<br>", "\n");
 
                 boolean express = Boolean.parseBoolean(split[15]);
                 DeliveryType deliveryType = DeliveryType.valueOf(split[16]);
@@ -79,7 +79,7 @@ public class CsvLoader implements DataLoader {
                 data.add(o.getReceiver().getSurname());
                 data.add(o.getReceiver().getAddress().toCsv(splitChar));
 
-                data.add(o.getDescription());
+                data.add(o.getDescription().replaceAll("\n", "<br>"));
                 data.add(o.getDelivery().toCsv(splitChar));
                 data.add(o.getInsurance().toCsv(splitChar));
 

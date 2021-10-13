@@ -15,7 +15,7 @@ import java.util.Map;
 public class ShippingObject implements CsvSerializable {
 
     private static HashMap<String, ShippingObject> SHIPPING_OBJECTS = new HashMap<>();
-    private static final DataLoader DATA_LOADER = new JsonLoader();
+    private static final DataLoader DATA_LOADER = new CsvLoader();
 
     public static ShippingObject get(String id) {
         return SHIPPING_OBJECTS.get(id);
