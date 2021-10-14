@@ -6,31 +6,45 @@ import javafx.scene.control.TextField;
 import versand.core.loader.CsvLoader;
 import versand.core.loader.CsvSerializable;
 import versand.core.loader.DataLoader;
-import versand.core.loader.JsonLoader;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class ShippingObject implements CsvSerializable {
 
-    private static HashMap<String, ShippingObject> SHIPPING_OBJECTS = new HashMap<>();
+    private static HashMap<String, HashMap<String, ShippingObject>> SHIPPING_OBJECTS = new HashMap<>();
     private static final DataLoader DATA_LOADER = new CsvLoader();
 
-    public static ShippingObject get(String id) {
-        return SHIPPING_OBJECTS.get(id);
+    public static ShippingObject get(LocalDate date, String id) {
+        HashMap<String, ShippingObject> objects = SHIPPING_OBJECTS.get(DataLoader.FORMATTER.format(date));
+        if (objects == null) {
+            return null;
+        }
+        return objects.get(id);
     }
 
-    public static boolean exists(String id) {
-        return SHIPPING_OBJECTS.containsKey(id);
+    public static boolean exists(LocalDate date, String id) {
+        if(!SHIPPING_OBJECTS.containsKey(DataLoader.FORMATTER.format(date))) return false;
+        return SHIPPING_OBJECTS.get(DataLoader.FORMATTER.format(date)).containsKey(id);
     }
 
-    public static void saveObjects(String fileName) {
-        DATA_LOADER.saveObjects(SHIPPING_OBJECTS, fileName);
+    public static boolean existsId(String id) {
+        for(Map.Entry<String, HashMap<String, ShippingObject>> entry : SHIPPING_OBJECTS.entrySet()) {
+            if(entry.getValue().containsKey(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public static void loadObjects(String fileName) {
-        SHIPPING_OBJECTS = DATA_LOADER.loadObjects(fileName);
+    public static void saveObjects() {
+        DATA_LOADER.saveObjects(SHIPPING_OBJECTS);
+    }
+
+    public static void loadObjects() {
+        SHIPPING_OBJECTS = DATA_LOADER.loadObjects();
     }
 
     public static void clearObjects() {
@@ -38,8 +52,10 @@ public class ShippingObject implements CsvSerializable {
     }
 
     public static void printObjects() {
-        for(Map.Entry<String, ShippingObject> entry : SHIPPING_OBJECTS.entrySet()) {
-            System.out.println(entry.getKey() + " -- " + entry.getValue());
+        for (Map.Entry<String, HashMap<String, ShippingObject>> entry : SHIPPING_OBJECTS.entrySet()) {
+            for (Map.Entry<String, ShippingObject> objectEntry : entry.getValue().entrySet()) {
+                System.out.println(entry.getKey() + " -- " + objectEntry.getValue());
+            }
         }
     }
 
@@ -58,13 +74,14 @@ public class ShippingObject implements CsvSerializable {
     /**
      * Erstellt ein neues {@link ShippingObject} und speichert es im Cache, falls die Erstellung erfolgreich war.<br>
      * Existiert bereits ein Versandobjekt mit der ID, wird es überschrieben.
-     * @param id ID des Versandobjekts
-     * @param placed Das Datum, an dem es aufgegeben wurde
-     * @param sender Sender
-     * @param receiver Empfänger
+     *
+     * @param id          ID des Versandobjekts
+     * @param placed      Das Datum, an dem es aufgegeben wurde
+     * @param sender      Sender
+     * @param receiver    Empfänger
      * @param description Beschreibung
-     * @param delivery Versand
-     * @param insurance Versicherung
+     * @param delivery    Versand
+     * @param insurance   Versicherung
      */
     public ShippingObject(String id, LocalDate placed, ShippingPerson sender, ShippingPerson receiver, String description, Delivery delivery, Insurance insurance) {
         this.id = id;
@@ -81,29 +98,36 @@ public class ShippingObject implements CsvSerializable {
     }
 
     public void cache() {
-        SHIPPING_OBJECTS.put(id, this);
+        String stringDate = DataLoader.FORMATTER.format(placed);
+        for(Map.Entry<String, HashMap<String, ShippingObject>> entry : new HashSet<>(SHIPPING_OBJECTS.entrySet())) {
+            entry.getValue().remove(id);
+        }
+        if (!SHIPPING_OBJECTS.containsKey(stringDate)) {
+            SHIPPING_OBJECTS.put(stringDate, new HashMap<>());
+        }
+        SHIPPING_OBJECTS.get(stringDate).put(id, this);
     }
 
     public boolean isCached() {
-        return SHIPPING_OBJECTS.containsKey(id);
+        return existsId(id);
     }
 
     public double getPrice() {
         DeliveryType deliveryType = delivery.getType();
         double price = deliveryType.getPrice();
-        if(delivery.isExpress()) {
-            if(deliveryType == DeliveryType.LETTER) {
+        if (delivery.isExpress()) {
+            if (deliveryType == DeliveryType.LETTER) {
                 price += 4;
             } else {
                 price += 6;
             }
         }
-        if(delivery.getWishDeliveryDate() != null) {
+        if (delivery.getWishDeliveryDate() != null) {
             price += 0.5;
         }
-        if(deliveryType != DeliveryType.LETTER && insurance.isSelected()) {
+        if (deliveryType != DeliveryType.LETTER && insurance.isSelected()) {
             InsuranceType insuranceType = insurance.getType();
-            if(insuranceType == InsuranceType.UNTIL_100) {
+            if (insuranceType == InsuranceType.UNTIL_100) {
                 price += 1.20;
             } else if (insuranceType == InsuranceType.UNTIL_500) {
                 price += 2.00;

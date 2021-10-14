@@ -23,12 +23,20 @@ public class Test {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateSerializer()).serializeNulls().create();
 
-        ShippingObject.saveObjects("objects");
+        ShippingObject.loadObjects();
 
-        ShippingObject.clearObjects();
-
-        ShippingObject.loadObjects("objects");
         ShippingObject.printObjects();
+
+        System.out.println(ShippingObject.get(LocalDate.now(), "1002"));
+
+        ShippingObject.saveObjects();
+
+        // ShippingObject.saveObjects("objects");
+
+        // ShippingObject.clearObjects();
+
+        // ShippingObject.loadObjects("objects");
+        // ShippingObject.printObjects();
     }
 
 }

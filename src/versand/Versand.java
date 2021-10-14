@@ -22,7 +22,7 @@ public class Versand extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest(event -> ShippingObject.saveObjects("objects"));
+        stage.setOnCloseRequest(event -> ShippingObject.saveObjects());
     }
 
     public static void main(String[] args) {

@@ -89,13 +89,13 @@ public class FXMLDocumentController implements Initializable {
         insuranceAbove500.selectedProperty().addListener((observable, oldValue, selected) -> insuranceAmount.setDisable(!selected));
         alternativeDestinationCheckbox.selectedProperty().addListener((observable, oldValue, selected) -> alternativeDestination.setDisable(!selected));
 
-        ShippingObject.loadObjects("objects");
+        ShippingObject.loadObjects();
     }
 
 
     @FXML
     private void loadShippingObject(ActionEvent event) {
-        ShippingObject object = ShippingObject.get(id.getText());
+        ShippingObject object = ShippingObject.get(placedDate.getValue(), id.getText());
         if(object == null) {
             Utils.message("Kein Objekt mit dieser ID");
             return;

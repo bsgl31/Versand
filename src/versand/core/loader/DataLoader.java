@@ -2,13 +2,15 @@ package versand.core.loader;
 
 import versand.core.ShippingObject;
 
-import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public interface DataLoader {
 
-    HashMap<String, ShippingObject> loadObjects(String fileName);
+    DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    void saveObjects(HashMap<String, ShippingObject> shippingObjects, String fileName);
+    HashMap<String, HashMap<String, ShippingObject>> loadObjects();
+
+    void saveObjects(HashMap<String, HashMap<String, ShippingObject>> shippingObjects);
 
 }
