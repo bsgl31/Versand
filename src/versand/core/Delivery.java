@@ -1,6 +1,8 @@
 package versand.core;
 
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import versand.core.loader.CsvSerializable;
 
 import java.time.LocalDate;

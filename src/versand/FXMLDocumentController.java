@@ -11,6 +11,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import versand.core.Address;
@@ -146,9 +147,10 @@ public class FXMLDocumentController implements Initializable {
 
     private boolean isNotValid() {
         boolean invalid = false;
-        for (TextField s : new TextField[]{senderStreet, senderHouseNumber, senderPostcode, senderLocation, senderName, senderSurname,
-                receiverStreet, receiverHouseNumber, receiverPostcode, receiverLocation, receiverName, receiverSurname, id}) {
+        for (TextInputControl s : new TextInputControl[]{senderStreet, senderHouseNumber, senderPostcode, senderLocation, senderName, senderSurname,
+                receiverStreet, receiverHouseNumber, receiverPostcode, receiverLocation, receiverName, receiverSurname, id, alternativeDestination, insuranceAmount}) {
             if (s.getText() == null || s.getText().trim().equals("")) {
+                if(s.isDisable()) continue;
                 s.setStyle("-fx-border-color: #ffb566");
                 invalid = true;
             } else {
@@ -156,7 +158,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         if(invalid) {
-            Utils.message("Sender/Empfänger sind Mussfelder.");
+            Utils.message("Es sind nicht alle Mussfelder ausgefüllt.");
             return true;
         }
 

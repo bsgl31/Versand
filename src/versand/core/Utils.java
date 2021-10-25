@@ -1,6 +1,6 @@
 package versand.core;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.time.LocalDate;
 
 public class Utils {

@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import versand.core.ShippingObject;
 
-import java.io.File;
-
 public class Versand extends Application {
     
     @Override
